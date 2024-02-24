@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quadratic Equation Solver</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        input {
+            font-size: 14px;
+            width: 50px;
+        }
+
+        button {
+            font-size: 14px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .result {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quadratic Equation Solver</h1>
+
+    <p>ax² + bx + c = 0</p>
+
+    <div id="input-frame">
+        <label for="a">a = </label>
+        <input type="text" id="a" />
+
+        <label for="b">b = </label>
+        <input type="text" id="b" />
+
+        <label for="c">c = </label>
+        <input type="text" id="c" />
+    </div>
+
+    <button onclick="solve()">Solve</button>
+
+    <div class="result" id="root-label"></div>
+    <div class="result" id="root1-label"></div>
+    <div class="result" id="root2-label"></div>
+
+    <script>
+        function solve() {
+            const a = parseFloat(document.getElementById('a').value);
+            const b = parseFloat(document.getElementById('b').value);
+            const c = parseFloat(document.getElementById('c').value);
+
+            // Calculate the discriminant
+            const discriminant = b ** 2 - 4 * a * c;
+
+            // Check if the discriminant is negative
+            if (discriminant < 0) {
+                document.getElementById('root-label').textContent = 'No real roots';
+                document.getElementById('root1-label').textContent = '';
+                document.getElementById('root2-label').textContent = '';
+            } else {
+                // Calculate the two roots
+                const root1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+                const root2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+
+                // Show the roots
+                document.getElementById('root-label').textContent = '';
+                document.getElementById('root1-label').textContent = `x = ${root1}`;
+                document.getElementById('root2-label').textContent = `x = ${root2}`;
+            }
+        }
+    </script>
+</body>
+</html>
